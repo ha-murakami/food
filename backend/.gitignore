@@ -5,54 +5,34 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/backend/.bundle
+/.bundle
 
 # Ignore all logfiles and tempfiles.
-/backend/log/*
-/backend/tmp/*
+/log/*
+/tmp/*
 /backend!/log/.keep
 /backend!/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-/backend/tmp/pids/*
+/tmp/pids/*
 /backend!/tmp/pids/
 /backend!/tmp/pids/.keep
 
 # Ignore uploaded files in development.
-/backend/storage/*
+/storage/*
 /backend!/storage/.keep
 
-/backend/public/assets
+/public/assets
 /api.byebug_history
 
 # Ignore master key for decrypting credentials and more.
-/backend/config/master.key
+/config/master.key
 
-/backend/public/packs
-/backend/public/packs-test
-/backend/node_modules
-/backend/yarn-error.log
-/backend/yarn-debug.log*
-/backend/.yarn-integrity
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+/yarn-debug.log*
+/.yarn-integrity
 
 
-/frontend/node_modules
-/frontend/.pnp
-/frontend/.pnp.js
-
-# testing
-/frontend/coverage
-
-# production
-/frontend/build
-
-# misc
-/frontend/.DS_Store
-/frontend/.env.local
-/frontend/.env.development.local
-/frontend/.env.test.local
-/frontend/.env.production.local
-
-/frontend/npm-debug.log*
-/frontend/yarn-debug.log*
-/frontend/yarn-error.log*
