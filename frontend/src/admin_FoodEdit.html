@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit_Food_Items</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="admin_FoodEdit.css">
+</head>
+<body>
+ 
+<div class="container mt-5">
+  <div class="form-container">
+    <h2>Edit Food Item</h2>
+
+    <form action="/admin/food/update" method="POST" enctype="multipart/form-data">
+      
+      <div class="mb-3">
+        <label for="name" class="form-label">Food Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label">Price (₮)</label>
+        <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select class="form-select" id="category" name="category">
+          <option>Breakfast</option>
+          <option>Lunch</option>
+          <option>Dinner</option>
+          <option>Snacks</option>
+          <option>Desserts</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload Image</label>
+        <input class="form-control" type="file" id="image" name="image">
+        
+        <div>
+          <label class="mt-2">Current Image:</label><br>
+          <img src="" alt="Food Image" class="img-thumbnail" width="200">
+        </div>
+      </div>
+
+      <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" value="1" id="available" name="available" checked>
+        <label class="form-check-label" for="available">
+          Available for order
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="/admin/food" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+  </div>
+</div>
+
+
+</body>
+</html>
