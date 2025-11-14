@@ -4,6 +4,8 @@ module Api
   module V1
     class FoodsController < ApplicationController
       before_action :authorize_request
+      #before_action :authorize_request, except: [:index, :show]
+
 
       def create
         food = Food.new(food_params)

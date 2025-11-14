@@ -1,0 +1,55 @@
+/* Tailwind CSS は index.html または index.css で読み込まれている前提です。
+  ここではHTML内で使われていたカスタムクラスを定義します。
+*/
+
+body {
+    /* 日本語フォント（Noto Sans JP）を優先 */
+    font-family: 'Noto Sans JP', sans-serif; 
+    background-color: #FFFAF0; /* Floral White */
+    color: #4A4A4A; 
+}
+
+/* メインの色（赤）*/
+.brand-color {
+    color: #C0392B; 
+}
+
+.brand-bg {
+    background-color: #C0392B;
+}
+
+.brand-bg-hover:hover {
+    background-color: #A93226;
+}
+
+/* カードが浮き上がるホバーエフェクト */
+.card-hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 以下のスタイルはHTML内では使われていませんでしたが、
+  元のCSSに含まれていたため残しています。
+*/
+#about img {
+    display: block; 
+    margin: 2rem auto; 
+    width: 100%; 
+    max-width: 600px; 
+    border-radius: 0.5rem; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+}
+
+.vung-co-anh-nen-moi {
+    background-image: url('https://img.pikbest.com/png-images/20241030/dining-bliss-restaurant-logo_11024921.png!w700wp');
+}
+
+.anh-moi-cua-toi {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+}
