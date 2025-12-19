@@ -1,55 +1,220 @@
-/* Tailwind CSS は index.html または index.css で読み込まれている前提です。
-  ここではHTML内で使われていたカスタムクラスを定義します。
-*/
-
-body {
-    /* 日本語フォント（Noto Sans JP）を優先 */
-    font-family: 'Noto Sans JP', sans-serif; 
-    background-color: #FFFAF0; /* Floral White */
-    color: #4A4A4A; 
+/* --- 変数定義 --- */
+:root {
+    --main-color: #c0392b;
+    --accent-color: #f39c12;
+    --base-color: #fafafa;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+    --gray-bg: #eeeeee;
 }
 
-/* メインの色（赤）*/
-.brand-color {
-    color: #C0392B; 
+/* --- 全体リセット --- */
+.food-app-root {
+    margin: 0;
+    font-family: "Noto Sans JP", Arial, sans-serif;
+    background-color: var(--base-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-.brand-bg {
-    background-color: #C0392B;
+.food-app-root * {
+    box-sizing: border-box; /* 検索ボックスのサイズずれ防止 */
 }
 
-.brand-bg-hover:hover {
-    background-color: #A93226;
+.container, .header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* カードが浮き上がるホバーエフェクト */
-.card-hover {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+/* --- ヘッダー --- */
+.site-header {
+    background-color: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.card-hover:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* 以下のスタイルはHTML内では使われていませんでしたが、
-  元のCSSに含まれていたため残しています。
-*/
-#about img {
-    display: block; 
-    margin: 2rem auto; 
-    width: 100%; 
-    max-width: 600px; 
-    border-radius: 0.5rem; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+.logo {
+    margin: 0;
+    color: var(--main-color) !important; /* 確実に赤色に */
+    font-size: 1.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
 }
 
-.vung-co-anh-nen-moi {
-    background-image: url('https://img.pikbest.com/png-images/20241030/dining-bliss-restaurant-logo_11024921.png!w700wp');
+.login-btn {
+    font-size: 0.9rem;
+    color: #666;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: #fff;
+    text-decoration: none;
 }
 
-.anh-moi-cua-toi {
-    width: 200px;
-    height: auto;
-    border-radius: 10px;
+/* --- 検索エリア（問題の箇所） --- */
+.search-area {
+    background-color: var(--main-color) !important;
+    color: #fff !important;
+    padding: 40px 0;
+    text-align: center;
+}
+
+/* 検索エリア全体の背景色を確実に固定 */
+.search-area {
+    background-color: var(--main-color) !important;
+    color: #fff !important;
+    padding: 40px 0;
+    text-align: center;
+    border: none; /* 境界線を消す */
+}
+
+/* フォーム自体の背景を透明化し、余計な余白を削る */
+.search-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 25px auto;
+    max-width: 500px;
+    background: transparent !important; /* フォーム自体の背景を透明に */
+    padding: 0; /* フォームの内側の余白を削除 */
+    border: none; /* フォームの枠線を削除 */
+}
+
+/* 入力欄の微調整 */
+.search-input {
+    flex: 1;
+    max-width: 400px;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    background-color: #fff; /* 入力欄の中身だけは白 */
+}
+
+/* ボタンの微調整 */
+.search-btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 0 25px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    height: 48px; /* 入力欄と高さを揃える */
+}
+
+/* --- カテゴリ --- */
+.category-nav {
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 20px;
+}
+
+.cat-label {
+    font-size: 0.9rem;
+}
+
+.cat-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cat-btn {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.cat-btn.active {
+    background: #fff;
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+/* --- メニューエリア --- */
+.menu-area { padding: 40px 0; }
+
+.menu-area h2 {
+    text-align: center;
+    color: var(--main-color);
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+.menu-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.menu-item-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-item {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.menu-img-frame {
+    width: 100%;
+    height: 200px;
+    background-color: var(--gray-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.menu-info {
+    padding: 20px;
+}
+
+.menu-info h3 { 
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+}
+
+.desc {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 15px 0;
+}
+
+.price {
+    display: inline-block;
+    color: var(--main-color);
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--accent-color);
 }

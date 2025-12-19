@@ -1,60 +1,214 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f7f7f7;
-    padding: 20px;
+/* --- 共通変数 --- */
+:root {
+    --main-color: #c0392b;
+    --accent-color: #f39c12;
+    --base-color: #fafafa;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+    --gray-bg: #eeeeee;
+    --danger-color: #e74c3c;
+    --success-color: #27ae60;
 }
 
-h1 {
-    text-align: center;
+/* 全体を囲むスコープ */
+.admin-list-root {
+    margin: 0;
+    font-family: "Noto Sans JP", Arial, sans-serif;
+    background-color: var(--base-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+/* --- ヘッダー（共通デザインの継承） --- */
+.admin-list-root .site-header {
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-th,
-td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+.admin-list-root .header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-th {
-    background-color: #333;
-    color: white;
+.admin-list-root .logo-link { text-decoration: none; }
+
+.admin-list-root .logo {
+    margin: 0;
+    color: var(--main-color);
+    font-size: 1.5rem;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-.actions button {
-    margin-right: 5px;
-    padding: 6px 12px;
-    border: none;
-    color: white;
-    cursor: pointer;
+.admin-list-root .admin-badge {
+    font-size: 0.8rem;
+    background: var(--text-color);
+    color: #fff;
+    padding: 2px 8px;
     border-radius: 4px;
+    font-family: Arial, sans-serif;
 }
 
-.edit-btn {
-    background-color: #4CAF50;
+.admin-list-root .logout-header-btn {
+    font-size: 0.9rem;
+    color: #666;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-.delete-btn {
-    background-color: #f44336;
+.admin-list-root .logout-header-btn:hover {
+    background: #f5f5f5;
+    color: var(--main-color);
+    border-color: var(--main-color);
 }
 
-.add-btn {
-    background-color: #2196F3;
-    color: white;
+/* --- メインコンテンツ --- */
+.admin-list-root .admin-main {
+    padding: 40px 0;
+}
+
+.admin-list-root .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* コントロールエリア（タイトルと新規作成ボタン） */
+.admin-list-root .admin-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-list-root .page-title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.admin-list-root .add-btn {
+    background-color: var(--main-color);
+    color: #fff;
     padding: 10px 20px;
-    margin-bottom: 10px;
-    display: inline-block;
     border-radius: 4px;
     text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.admin-list-root .add-btn:hover {
+    background-color: #a93226;
+}
+
+/* --- テーブルデザイン --- */
+.admin-list-root .table-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    overflow-x: auto; /* スマホで横スクロール */
+}
+
+.admin-list-root .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* 横幅確保 */
+}
+
+.admin-list-root .admin-table th,
+.admin-list-root .admin-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-list-root .admin-table th {
+    background-color: var(--gray-bg);
+    color: #555;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* カラムごとの調整 */
+.admin-list-root .th-id { width: 50px; }
+.admin-list-root .th-img { width: 80px; }
+.admin-list-root .th-price { width: 100px; }
+.admin-list-root .th-action { width: 160px; text-align: center; }
+.admin-list-root .td-action { text-align: center; }
+
+.admin-list-root .thumb-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.admin-list-root .td-name {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.admin-list-root .cat-badge {
+    background-color: #eef2f7;
+    color: #555;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+
+.admin-list-root .td-price {
+    font-family: 'Arial', sans-serif;
+}
+
+/* 操作ボタン */
+.admin-list-root .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.admin-list-root .btn-edit {
+    padding: 6px 12px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+}
+
+.admin-list-root .btn-delete {
+    padding: 6px 12px;
+    background-color: var(--danger-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+}
+
+.admin-list-root .btn-edit:hover,
+.admin-list-root .btn-delete:hover {
+    opacity: 0.8;
 }

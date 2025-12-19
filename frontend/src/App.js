@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Admin_FoodList from "./admin_FoodList";
 import Admin_FoodEdit from "./admin_FoodEdit";
 import Login from "./Login";
-
-// ⬇️ 1. FoodListのインポートを有効にします
 import FoodList from "./FoodList";
-// import FoodDetail from "./FoodDetail";
+// ⬇️ 新規作成する詳細画面をインポート
+import FoodDetail from "./FoodDetail";
 
-// (ProtectedRoute コンポーネント ... 変更なし)
 function ProtectedRoute({ isAuthenticated, children }) {
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
@@ -35,10 +33,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* --- 公開ルート (誰でも見られる) --- */}
-        
-        {/* ⬇️ 2. ホームページ('/')にFoodListコンポーネントを割り当てます */}
+        {/* --- 公開ルート --- */}
         <Route path="/" element={<FoodList />} />
+        
+        {/* ⬇️ 詳細画面のルートを追加 (idパラメータを受け取る) */}
+        <Route path="/food/:id" element={<FoodDetail />} />
         
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
 
@@ -51,6 +50,15 @@ function App() {
             </ProtectedRoute>
           } 
         />
+        {/* 新規作成と編集で同じコンポーネントを使う想定 (idがない場合は新規) */}
+        <Route 
+          path="/admin_FoodEdit" 
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Admin_FoodEdit />
+            </ProtectedRoute>
+          } 
+        />
         <Route 
           path="/admin_FoodEdit/:id" 
           element={
@@ -60,11 +68,10 @@ function App() {
           } 
         />
 
-        {/* --- フォールバック（どのルートにも一致しない場合）--- */}
+        {/* --- フォールバック --- */}
         <Route 
           path="*" 
           element={
-            // ⬇️ 3. 未認証の場合はホームページ('/')にリダイレクトするよう変更
             isAuthenticated 
               ? <Navigate to="/admin_FoodList" /> 
               : <Navigate to="/" />

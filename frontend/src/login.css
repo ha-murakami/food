@@ -1,64 +1,164 @@
+/* login.css */
 
-.pageAll{
+/* 重要: bodyタグへの指定は全ページに影響するので削除し、
+  代わりに .login-root に対して指定します。
+*/
+
+/* --- FoodListと共通の変数はそのまま利用 --- */
+:root {
+    --main-color: #c0392b;
+    --accent-color: #f39c12;
+    --base-color: #fafafa;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+    --gray-bg: #eeeeee;
+}
+
+/* ここが修正ポイント！ 
+  「.login-root」という壁の中でだけスタイルを適用させます。
+*/
+.login-root {
+    margin: 0;
+    font-family: "Noto Sans JP", Arial, sans-serif;
+    background-color: var(--base-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ヘッダーなどの共通パーツは、FoodListと同じクラス名なら
+  同じスタイルが当たるので、あえてlogin.cssに書かなくても
+  FoodList.cssが読み込まれていれば綺麗に表示されることが多いです。
+  もし崩れる場合は、.login-root を頭につけて上書きします。
+*/
+.login-root .site-header {
+    background-color: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.login-root .header-inner {
+    max-width: 1000px;
     margin: 0 auto;
-    width: 500px;
-}
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
 }
 
-form {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.login-root .logo {
+    margin: 0;
+    color: var(--main-color);
+    font-size: 1.5rem;
+    font-family: Georgia, serif;
+    font-weight: bold;
+}
+
+.login-root .logo-link { text-decoration: none; }
+
+
+/* --- ログイン固有エリア --- */
+
+.login-root .login-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* 重要: .container は FoodList.css にも存在し、衝突の原因になります。
+  ここでも .login-root で限定するか、クラス名を変えます。
+*/
+.login-root .container {
     width: 100%;
-    max-width: 600px;
-    box-sizing: border-box;
-    margin-bottom: 25px;
-}
-
-form h2 {
-    font-size: 1.05em;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    color: #555;
-}
-
-input[type="text"],
-input[type="password"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-    font-size: 1em;
-    color: #333;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus,
-textarea:focus {
-    outline: none;
-    border-color: #888;
-}
-
-
-.buttons button{
     display: flex;
     justify-content: center;
-    width: 250px;
-    margin:0 auto;
-    padding: .9em 2em;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 3px rgb(0 0 0 / 25%), 0 2px 3px -2px rgb(0 0 0 / 15%);
-    background-color: #004475;
+}
+
+.login-root .login-card {
+    background: #fff;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.login-root .login-title {
+    color: var(--main-color);
+    margin: 0 0 30px 0;
+    font-size: 1.5rem;
+}
+
+/* --- フォームパーツ --- */
+
+.login-root .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-root .form-group {
+    text-align: left;
+}
+
+.login-root .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.login-root .login-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    background-color: #fff;
+}
+
+.login-root .login-input:focus {
+    outline: none;
+    border-color: var(--main-color);
+}
+
+.login-root .login-submit-btn {
+    background-color: var(--main-color);
     color: #fff;
-    font-weight: 600;
-    font-size: 1em;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.login-root .login-submit-btn:hover {
+    background-color: #a93226;
+}
+
+/* --- フッター --- */
+.login-root .login-footer {
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+
+.login-root .back-home-link {
+    color: #888;
+    text-decoration: underline;
+}
+
+.login-root .back-home-link:hover {
+    color: var(--main-color);
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 import './login.css';
 
 function Login({ onLogin }) {
@@ -8,6 +8,7 @@ function Login({ onLogin }) {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    // すでにログイン済みならリダイレクト
     const token = localStorage.getItem("token");
     if (token) return <Navigate to="/admin_FoodList" />;
 
@@ -32,30 +33,57 @@ function Login({ onLogin }) {
     };
 
     return (
-        <div className="pageAll">
-            <h1>ログイン</h1>
-            
-            <form onSubmit={handleSubmit}>
-                <h2>e-Mailアドレス：</h2>
-                <input 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
-                    placeholder="メール"
-                    type="text"
-                />
-
-                <h2>パスワード：</h2>
-                <input 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)} 
-                    placeholder="パスワード" 
-                    type="password" 
-                />
-
-                <div className="buttons">
-                    <button type="submit">ログイン</button>
+        <div className="login-root">
+            {/* 共通ヘッダー（ロゴのみ表示） */}
+            <header className="site-header">
+                <div className="header-inner">
+                    <Link to="/" className="logo-link">
+                        <h1 className="logo">FOOD</h1>
+                    </Link>
                 </div>
-            </form>
+            </header>
+
+            <main className="login-main">
+                <div className="container">
+                    <div className="login-card">
+                        <h2 className="login-title">管理者ログイン</h2>
+                        
+                        <form onSubmit={handleSubmit} className="login-form">
+                            <div className="form-group">
+                                <label>e-Mailアドレス</label>
+                                <input 
+                                    value={email} 
+                                    onChange={(e) => setEmail(e.target.value)} 
+                                    placeholder="admin@example.com"
+                                    type="text"
+                                    className="login-input"
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>パスワード</label>
+                                <input 
+                                    value={password} 
+                                    onChange={(e) => setPassword(e.target.value)} 
+                                    placeholder="パスワードを入力" 
+                                    type="password" 
+                                    className="login-input"
+                                />
+                            </div>
+
+                            <button type="submit" className="login-submit-btn">
+                                ログイン
+                            </button>
+                        </form>
+
+                        <div className="login-footer">
+                            <Link to="/" className="back-home-link">
+                                サイトトップへ戻る
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
     );
 }
