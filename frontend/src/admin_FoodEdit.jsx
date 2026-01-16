@@ -8,16 +8,16 @@ function AdminFoodEdit({ onLogout }) {
     const navigate = useNavigate();
     const isEditMode = !!id;
 
-    // フォームの状態管理
+    // フォーム
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    // 初期値を日本語の「メイン」に変更
+
     const [category, setCategory] = useState('メイン'); 
     
     const [imageFile, setImageFile] = useState(null);
 
-    // 編集モードの場合、既存データを取得
+    // 編集モード
     useEffect(() => {
         if (isEditMode) {
             axios.get(`http://localhost:3000/api/v1/foods/${id}`)

@@ -8,7 +8,7 @@ function Login({ onLogin }) {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    // すでにログイン済みならリダイレクト
+    // ログイン済み
     const token = localStorage.getItem("token");
     if (token) return <Navigate to="/admin_FoodList" />;
 

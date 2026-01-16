@@ -27,10 +27,8 @@ function FoodDetail() {
 
   return (
     <div className="food-detail-root">
-      {/* 共通ヘッダー */}
       <header className="site-header">
         <div className="header-inner">
-            {/* ロゴをクリックするとホームに戻るように Link に変更 */}
             <Link to="/" className="logo-link">
                 <h1 className="logo">FOOD</h1>
             </Link>

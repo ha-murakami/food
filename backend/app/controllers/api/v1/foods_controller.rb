@@ -75,8 +75,15 @@ module Api
 
       # ... (index, show, destroy は変更なし) ...
       def index
-        # 省略 (前回と同じ)
+        # まず全件取得の準備
         foods = Food.all
+
+        # もし params[:name] (検索ワード) があったら、名前であいまい検索(LIKE)する
+        if params[:name].present?
+          # % を使うことで「〜を含む」検索になります
+          foods = foods.where("name LIKE ?", "%#{params[:name]}%")
+        end
+
         render json: foods
       end
       
