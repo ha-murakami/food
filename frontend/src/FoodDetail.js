@@ -56,7 +56,7 @@ function FoodDetail() {
                 <span className="detail-price">¥{Number(food.price).toLocaleString()}</span>
                 {/* <span className="tax">
                     (税込 ¥{Math.floor(food.price * 1.1).toLocaleString()})
-                </span> */}
+                </span> これは消すかも*/}
               </div>
 
               <p className="full-description">

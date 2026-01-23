@@ -34,7 +34,7 @@ function Login({ onLogin }) {
 
     return (
         <div className="login-root">
-            {/* 共通ヘッダー（ロゴのみ表示） */}
+            {/* 共通ヘッダー */}
             <header className="site-header">
                 <div className="header-inner">
                     <Link to="/" className="logo-link">

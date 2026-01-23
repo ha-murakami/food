@@ -6,7 +6,7 @@ import './admin_FoodList.css';
 function AdminFoodList({ onLogout }) {
     const [foods, setFoods] = useState([]);
 
-    // 削除処理
+    //削除
     const handleDelete = async (id) => {
         if(!window.confirm("本当に削除しますか？")) return;
         
@@ -22,7 +22,7 @@ function AdminFoodList({ onLogout }) {
         }
     };
 
-    // 一覧取得
+    //一覧取得
     useEffect(() => {
         const fetchFoods = async () => {
             try {
@@ -37,13 +37,13 @@ function AdminFoodList({ onLogout }) {
 
     return (
         <div className="admin-list-root">
-            {/* 共通ヘッダー */}
+            {/*共通ヘッダー*/}
             <header className="site-header">
                 <div className="header-inner">
                     <Link to="/" className="logo-link">
                         <h1 className="logo">FOOD <span className="admin-badge">Admin</span></h1>
                     </Link>
-                    {/* ヘッダー右側にログアウトボタンを配置 */}
+                    {/*ヘッダー右側にログアウトボタンを配置*/}
                     <button onClick={onLogout} className="logout-header-btn">
                         ログアウト
                     </button>

@@ -12,12 +12,10 @@ function AdminFoodEdit({ onLogout }) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-
     const [category, setCategory] = useState('メイン'); 
-    
     const [imageFile, setImageFile] = useState(null);
 
-    // 編集モード
+    //編集モード
     useEffect(() => {
         if (isEditMode) {
             axios.get(`http://localhost:3000/api/v1/foods/${id}`)
@@ -27,7 +25,7 @@ function AdminFoodEdit({ onLogout }) {
                     setName(data.name || '');
                     setDescription(data.description || '');
                     setPrice(data.price || '');
-                    // データがない場合のデフォルトも「メイン」に変更
+                    //データがない場合のデフォルトもメインに変更
                     setCategory(data.category || 'メイン');
                 })
                 .catch(err => console.error("データ取得エラー", err));
@@ -36,7 +34,6 @@ function AdminFoodEdit({ onLogout }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const formData = new FormData();
         formData.append('food[name]', name);
         formData.append('food[description]', description);
@@ -90,7 +87,6 @@ function AdminFoodEdit({ onLogout }) {
                         <div className="card-header">
                             <h2 className="edit-title">{isEditMode ? 'メニュー編集' : '新規メニュー登録'}</h2>
                         </div>
-                        
                         <form onSubmit={handleSubmit} className="edit-form">
                             <div className="form-group">
                                 <label className="form-label">商品名</label>
@@ -103,7 +99,6 @@ function AdminFoodEdit({ onLogout }) {
                                     placeholder="例: ハンバーガー"
                                 />
                             </div>
-
                             <div className="form-group">
                                 <label className="form-label">説明文</label>
                                 <textarea 
@@ -114,7 +109,6 @@ function AdminFoodEdit({ onLogout }) {
                                     placeholder="商品の説明を入力してください"
                                 ></textarea>
                             </div>
-
                             <div className="form-row">
                                 <div className="form-group half">
                                     <label className="form-label">価格 (¥)</label>
@@ -127,14 +121,9 @@ function AdminFoodEdit({ onLogout }) {
                                         placeholder="1000"
                                     />
                                 </div>
-
                                 <div className="form-group half">
                                     <label className="form-label">カテゴリ</label>
-                                    <select 
-                                        className="edit-select" 
-                                        value={category} 
-                                        onChange={(e) => setCategory(e.target.value)}
-                                    >
+                                    <select className="edit-select"  value={category} onChange={(e) => setCategory(e.target.value)}>
                                         <option value="セット">セット</option>
                                         <option value="メイン">メイン</option>
                                         <option value="サイドメニュー">サイドメニュー</option>
@@ -146,17 +135,11 @@ function AdminFoodEdit({ onLogout }) {
 
                             <div className="form-group">
                                 <label className="form-label">商品画像</label>
-                                <input 
-                                    className="edit-file-input" 
-                                    type="file" 
-                                    accept="image/*"
-                                    onChange={(e) => setImageFile(e.target.files[0])} 
-                                />
+                                <input className="edit-file-input" type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} />
                                 {isEditMode && !imageFile && (
                                     <p className="current-image-note">※変更しない場合は現在の画像が維持されます</p>
                                 )}
                             </div>
-
                             <div className="button-group">
                                 <Link to="/admin_FoodList" className="cancel-btn">キャンセル</Link>
                                 <button type="submit" className="save-btn">保存する</button>
